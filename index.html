@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<title>Hangman</title>
+	</head>
+	
+	<body>
+
+	  <div class="container">
+	      <div class="row">
+	          <div class="col-md-offset-2 col-md-8">
+	              <div class="jumbotron">
+	                  <!-- Setting up spans to change in JavaScript -->
+	                  <h1><strong>Elemental Hangman</strong></h1>
+	                  <p id="element-paragraph"><span id="element-hidden"><strong>Hidden Element</strong></span> Press any key to start guessing the element. <span id="hangman-pic">Hangman image</span> <span id="letterGuessed">Letter Guessed</span></p>
+
+	           				<p><input type="text" id="keyUp" onkeyup="letterGuessed()"></span></p>
+	              </div>
+	          </div>
+	      </div>
+	  </div>
+
+		<script type="text/javascript">
+			var htmlElementHidden = document.getElementById("element-hidden");
+			var htmlElementVisible = document.getElementById("element-visible");
+			var htmlHangman = document.getElementById("hangman-pic");
+			var hmtlLetter = document.getElementById("letterGuessed");
+
+			function letterGuessed() {
+				
+				var key = {
+      'a': 65,
+      'b': 66,
+      'c': 67,
+      'd': 68,
+      'e': 69,
+      'f': 70,
+      'g': 71,
+      'h': 72,
+      'i': 73,
+      'j': 74,
+      'k': 75,
+      'l': 76,
+      'm': 77,
+      'n': 78,
+      'o': 79,
+      'p': 80,
+      'q': 81,
+      'r': 82,
+      's': 83,
+      't': 84,
+      'u': 85,
+      'v': 86,
+      'w': 87,
+      'x': 88,
+      'y': 89,
+      'z': 90
+  }
+
+
+  	var key = document.getElementById(keyUp);
+
+				if (key <= 64 || key >= 91) {
+					window.alert("Try again. Pick a leter.")
+				}
+
+		var chemElements = {
+			1: "Hydrogen",
+			2: "Helium",
+			3: "Lithium",
+			4: "Beryllium",
+			5: "Boron",
+			6: "Carbon",
+			7: "Nitrogen",
+			8: "Oxygen",
+			9: "Fluorine",
+			10: "Neon",
+			11: "Sodium",
+			12: "Magnesium",
+			13: "Aluminum",
+			14: "Silicon",
+			15: "Phosphorus", 
+			16: "Sulfur",
+			17: "Chlorine",
+			18: "Argon",
+			19: "Potassium",
+			20: "Calcium",
+			21: "Scandium",
+			22: "Titanium",
+			23: "Vanadium",
+			24: "Chromium",
+			25: "Manganese",
+			26: "Iron",
+			27: "Cobalt",
+			28: "Nickel",
+			29: "Copper",
+			30: "Zinc",
+			31: "Gallium",
+			32: "Germanium",
+			33: "Arsenic",
+			34: "Selenium",
+			35: "Bromine",
+			36: "Krypton",
+			37: "Rubidium",
+			38: "Strontium",
+			39: "Yttrium",
+			40: "Zirconium",
+			41: "Niobium",
+			42: "Molybdenum",
+			43: "Technetium",
+			44: "Ruthenium",
+			45: "Rhodium",
+			46: "Palladium",
+			47: "Silver",
+			48: "Cadmium",
+			49: "Indium", //check spelling
+			50: "Tin",
+			51: "Antimony",
+			52: "Tellurium",
+			53: "Iodine",
+			54: "Xenon",
+			55: "Cesium",
+
+		Actinium	89		Mendelevium	101
+		Hg	Mercury	80
+Am	Americium	95		
+		Ns	Neilsborium	107
+		Nd	Neodymium	60
+		
+At	Astatine	85		Np	Neptunium	93
+Ba	Barium	56		Nh	Nihonium	113
+Bk	Berkelium	97		
+Be		
+Bi	Bismuth	83		
+Bh	Bohrium	107		No	Nobelium	102
+	Og	Oganesson	118
+		Os	Osmium	76
+		
+		
+Cf	Californium	98		
+C		Pt	Platinum	78
+Ce	Cerium	58		Pu	Plutonium	94
+		Po	Polonium	84
+	
+		Pr	Praseodymium	59
+		Pm	Promethium	61
+Cn	Copernicium	112		Pa	Protactinium	91
+		Ra	Radium	88
+Cm	Curium	96		Rn	Radon	86
+Ds	Darmstadtium	110		Re	Rhenium	75
+Db	Dubnium	105		
+Dy	Dysprosium	66		Rg	Roentgenium	111
+Es	Einsteinium	99		
+Er	Erbium	68		
+Eu	Europium	63		Rf	Rutherfordium	104
+Fm	Fermium	100		Sm	Samarium	62
+Fl	Flerovium	114		
+F			Sg	Seaborgium	106
+Fr	Francium	87		
+Gd	Gadolinium	64		
+		
+		
+Au	Gold	79		
+Hf	Hafnium	72		
+Hs	Hassium	108		Ta	Tantalum	73
+He		
+Ho	Holmium	67		
+	Tn	Tennessine	117
+		Tb	Terbium	65
+		Tl	Thallium	81
+Ir	Iridium	77		Th	Thorium	90
+		Tm	Thulium	69
+		
+La	Lanthanum	57		
+Lr	Lawrencium	103		W	Tungsten	74
+Pb	Lead	82		U	Uranium	92
+Li		
+Lv	Livermorium	116		
+Lu	Lutetium	71		Yb	Ytterbium	70
+Mg			
+Mc	Moscovium	115		
+		
+Mt	Meitnerium	109	
+		}
+
+
+			}
+		</script>
+	
+	</body>
+</html>
