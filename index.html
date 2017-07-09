@@ -3,194 +3,173 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 		<title>Hangman</title>
 	</head>
 	
 	<body>
 
-	  <div class="container">
-	      <div class="row">
-	          <div class="col-md-offset-2 col-md-8">
-	              <div class="jumbotron">
-	                  <!-- Setting up spans to change in JavaScript -->
-	                  <h1><strong>Elemental Hangman</strong></h1>
-	                  <p id="element-paragraph"><span id="element-hidden"><strong>Hidden Element</strong></span> Press any key to start guessing the element. <span id="hangman-pic">Hangman image</span> <span id="letterGuessed">Letter Guessed</span></p>
+	<div class="jumbotron">
+    <h1 class="text-center">Football Hangman</h1>
+    <h2 class="text-center">To start, pick a letter!</h2>
+  </div>
 
-	           				<p><input type="text" id="keyUp" onkeyup="letterGuessed()"></span></p>
-	              </div>
-	          </div>
-	      </div>
-	  </div>
+  <div class="container">
+
+    <div class="row">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">What team could it be?</h3>
+        </div>
+        <div class="panel-body text-center">
+          <h1 id="answer"><!--Create _ _ _ Here--></h1>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Letters Picked</h3>
+        </div>
+        <div id= "guessedLetters" class="panel-body text-center">
+          <!--DISPLAY LETTERS HERE-->
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Hangman</h3>
+        </div>
+        <div class="panel-body text-center">
+          <h1 id="result"><!-- image of hangman --></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	
 
 		<script type="text/javascript">
-			var htmlElementHidden = document.getElementById("element-hidden");
-			var htmlElementVisible = document.getElementById("element-visible");
-			var htmlHangman = document.getElementById("hangman-pic");
-			var hmtlLetter = document.getElementById("letterGuessed");
-
-			function letterGuessed() {
-				
-				var key = {
-      'a': 65,
-      'b': 66,
-      'c': 67,
-      'd': 68,
-      'e': 69,
-      'f': 70,
-      'g': 71,
-      'h': 72,
-      'i': 73,
-      'j': 74,
-      'k': 75,
-      'l': 76,
-      'm': 77,
-      'n': 78,
-      'o': 79,
-      'p': 80,
-      'q': 81,
-      'r': 82,
-      's': 83,
-      't': 84,
-      'u': 85,
-      'v': 86,
-      'w': 87,
-      'x': 88,
-      'y': 89,
-      'z': 90
-  };
-
-
-  	var key = document.getElementById(keyUp);
-
-				if (key<= 64 || key >= 91) {
-					window.alert("Try again. Pick a leter.")
-				};
-
-		var chemElements = {
-			1: "Hydrogen",
-			2: "Helium",
-			3: "Lithium",
-			4: "Beryllium",
-			5: "Boron",
-			6: "Carbon",
-			7: "Nitrogen",
-			8: "Oxygen",
-			9: "Fluorine",
-			10: "Neon",
-			11: "Sodium",
-			12: "Magnesium",
-			13: "Aluminum",
-			14: "Silicon",
-			15: "Phosphorus", 
-			16: "Sulfur",
-			17: "Chlorine",
-			18: "Argon",
-			19: "Potassium",
-			20: "Calcium",
-			21: "Scandium",
-			22: "Titanium",
-			23: "Vanadium",
-			24: "Chromium",
-			25: "Manganese",
-			26: "Iron",
-			27: "Cobalt",
-			28: "Nickel",
-			29: "Copper",
-			30: "Zinc",
-			31: "Gallium",
-			32: "Germanium",
-			33: "Arsenic",
-			34: "Selenium",
-			35: "Bromine",
-			36: "Krypton",
-			37: "Rubidium",
-			38: "Strontium",
-			39: "Yttrium",
-			40: "Zirconium",
-			41: "Niobium",
-			42: "Molybdenum",
-			43: "Technetium",
-			44: "Ruthenium",
-			45: "Rhodium",
-			46: "Palladium",
-			47: "Silver",
-			48: "Cadmium",
-			49: "Indium", 
-			50: "Tin",
-			51: "Antimony",
-			52: "Tellurium",
-			53: "Iodine",
-			54: "Xenon",
-			55: "Cesium",
-			56: "Barium",
-			57: "Lanthanum",
-			58: "Cerium",
-			59: "Praseodymium",
-			60: "Neodymium",
-			61: "Promethium",
-			62: "Samarium",
-			63: "Europium",
-			64: "Gadolinium",
-			65: "Terbium",
-			66: "Dysprosium",
-			67: "Holmium",
-			68: "Erbium",
-			69: "Thulium",
-			70: "Ytterbium",
-			71: "Lutetium",
-			72: "Hafnium",
-			73: "Tantalum",
-			74: "Tungsten",
-			75: "Rhenium",
-			76: "Osmium",
-			77: "Iridium",
-			78: "Platinum",
-			79: "Gold",
-			80: "Mercury",
-			81: "Thallium",
-			82: "Lead",	
-			83: "Bismuth",
-			84: "Polonium",
-			85: "Astatine",
-			86: "Radon",
-			87: "Francium",
-			88: "Radium",
-			89: "Actinium",
-			90: "Thorium",
-			91: "Protactinium",
-			92: "Uranium",
-			93: "Neptunium",
-			94: "Plutonium",
-			95: "Americium",
-			96: "Curium",
-			97: "Berkelium",
-			98: "Californium",
-			99: "Einsteinium",
-			100: "Fermium",
-			101: "Mendelevium",
-			102: "Nobelium",
-			103: "Lawrencium",
-			104: "Rutherfordium",
-			105: "Dubnium",
-			106: "Seaborgium",
-			107: "Bohrium",
-			108: "Hassium",
-			109: "Meitnerium",
-			110: "Darmstadtium",
-			111: "Roentgenium",
-			112: "Copernicium",
-			113: "Nihonium",
-			114: "Flerovium",
-			115: "Moscovium",
-			116: "Livermorium",
-			117: "Tennessine",
-			118: "Oganesson"
-		}
-		
 			
-Bh	Bohrium	107		
-	
+			var teamArray = [
+				"Arizona Cardinals",
+				"Los Angeles Rams",
+				"Oakland Raiders",
+				"San Diego Chargers",
+				"San Francisco Forty-Niners",
+				"Denver Broncos",
+				"Jacksonville Jaguars",
+				"Miami Dolphins",
+				"Tampa Bay Buccaneers",
+				"Atlanta Falcons",
+				"Chicago Bears",
+				"Indianapolis Colts",
+				"New Orleans Saints",
+				"Baltimore Ravens",
+				//"Washington Redskins",
+				//"New England Patriots",
+				//"Detroit Lions",
+				//"Minnesota Vikings",
+				// "Kansas City Chiefs",
+				//"New York Giants",
+				//"New York Jets",
+				//"Buffalo Bills",
+				//"Carolina Panthers",
+				//"Cincinnati Bengals",
+				//"Cleveland Browns",
+				//"Philadelphia Eagles",
+				//"Pittsburgh Steelers",
+				//"Tennessee Titans",
+				//"Dallas Cowboys",
+				//"Houston Texans",
+				//"Seattle Seahawks",
+				//"Green Bay Packers"
+			];
+
+			var solved;
+			var placeHolder;
+			var turnsLeft;
+
+			function hangMan() {
+
+			placeHolder = "";
+			var random = Math.floor(Math.random()*teamArray.length);
+			solved = teamArray[random].toLowerCase();
+			//var placeHolder = solved.replace(/[a-z]/gi, "- ");
+			console.log(solved);
+
+			for( var i = 0; i < solved.length; i++) {
+				placeHolder = solved.replace(/[a-z]/gi, '_ ');
 			}
+
+			document.getElementById("answer").innerHTML = placeHolder;
+		}
+			
+			document.onkeyup = function () {
+				var correct = 0;
+				var guessed = event.key.toLowerCase();
+				document.getElementById("guessedLetters").innerHTML = guessed;
+
+				for(var i = 0; i < solved.length; i++) {
+					if(guessed == solved.substring(i, i + 1)) {
+						correct++;
+						placeHolder = placeHolder.substring(0, i) + guessed + placeHolder.substring(i + 1, placeHolder.length + 1);
+						document.getElementById("answer").innerHTML = placeHolder;
+					}
+				}
+
+				if(correct === 0) {
+					turnsLeft--;
+				}
+
+				//HANGMAN image document.getElementById(Hangman)
+
+				if(placeHolder == solved) {
+					alert("you win!")
+				}
+
+				if(turnsLeft == 0) {
+					alert("You lose!");
+					hangMan();
+				}
+			}
+			hangMan();
+				var count = 0;
+				var pos = solved.indexOf('e');
+
+				while (pos !== -1) {
+					count++;
+					pos = solved.indexOf('e', pos + 1);
+				
+					
+				}
+
+				console.log(count);
+
+			
+
+		
+				
+
+
+
+
+		
+
+			//$(document).ready(function() {
+
+				//var randomNumber = Math.floor(Math.random()*teamArray.length);
+				//var finalAnswer = teamArray[randomNumber];
+				//$("#answer").html(finalAnswer);
+
+			//});
+
+			
+	
+		
 		</script>
 	
 	</body>
