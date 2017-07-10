@@ -1,176 +1,81 @@
+
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-		<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+<html lang="en">
+<head>
+  <title>Hangman</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-		<title>Hangman</title>
-	</head>
-	
-	<body>
+  <script src="assets/javascript/game.js">
+		</script>
+  <style>
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 870px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
 
-	<div class="jumbotron">
-    <h1 class="text-center">Football Hangman</h1>
-    <h2 class="text-center">To start, pick a letter!</h2>
-  </div>
 
-  <div class="container">
-
-    <div class="row">
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">What team could it be?</h3>
-        </div>
-        <div class="panel-body text-center">
-          <h1 id="answer"><!--Create _ _ _ Here--></h1>
-        </div>
+  <div class="container-fluid">
+    
+    
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    	<div class="well">
+    		<p>Guesses Remaining</p>
+    		<span id="result" placeholder="10"></span>
       </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Letters Picked</h3>
-        </div>
-        <div id= "guessedLetters" class="panel-body text-center">
-          <!--DISPLAY LETTERS HERE-->
-        </div>
+    </div>
+    <div class="col-sm-8" id="top"> 
+      <h1 id="header">Football Hangman</h1>
+      <p>Start by guessing a letter.</p>
+      <hr>
+      <h1 id="answer"></h1>
+      <a href="index.html" class="btn btn-primary" role="button">Play Again</a>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>Letters Guessed</p>
+      <div id="letters">
       </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Hangman</h3>
-        </div>
-        <div class="panel-body text-center">
-          <h1 id="result"><!-- image of hangman --></h1>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
-	
+<footer class="container-fluid text-center">
+  <p>Created By Nic Hoey &#9400;2017</p>
+</footer>
 
-		<script type="text/javascript">
-			
-			var teamArray = [
-				"Arizona Cardinals",
-				"Los Angeles Rams",
-				"Oakland Raiders",
-				"San Diego Chargers",
-				"San Francisco Forty-Niners",
-				"Denver Broncos",
-				"Jacksonville Jaguars",
-				"Miami Dolphins",
-				"Tampa Bay Buccaneers",
-				"Atlanta Falcons",
-				"Chicago Bears",
-				"Indianapolis Colts",
-				"New Orleans Saints",
-				"Baltimore Ravens",
-				//"Washington Redskins",
-				//"New England Patriots",
-				//"Detroit Lions",
-				//"Minnesota Vikings",
-				// "Kansas City Chiefs",
-				//"New York Giants",
-				//"New York Jets",
-				//"Buffalo Bills",
-				//"Carolina Panthers",
-				//"Cincinnati Bengals",
-				//"Cleveland Browns",
-				//"Philadelphia Eagles",
-				//"Pittsburgh Steelers",
-				//"Tennessee Titans",
-				//"Dallas Cowboys",
-				//"Houston Texans",
-				//"Seattle Seahawks",
-				//"Green Bay Packers"
-			];
-
-			var solved;
-			var placeHolder;
-			var turnsLeft;
-
-			function hangMan() {
-
-			placeHolder = "";
-			var random = Math.floor(Math.random()*teamArray.length);
-			solved = teamArray[random].toLowerCase();
-			//var placeHolder = solved.replace(/[a-z]/gi, "- ");
-			console.log(solved);
-
-			for( var i = 0; i < solved.length; i++) {
-				placeHolder = solved.replace(/[a-z]/gi, '_ ');
-			}
-
-			document.getElementById("answer").innerHTML = placeHolder;
-		}
-			
-			document.onkeyup = function () {
-				var correct = 0;
-				var guessed = event.key.toLowerCase();
-				document.getElementById("guessedLetters").innerHTML = guessed;
-
-				for(var i = 0; i < solved.length; i++) {
-					if(guessed == solved.substring(i, i + 1)) {
-						correct++;
-						placeHolder = placeHolder.substring(0, i) + guessed + placeHolder.substring(i + 1, placeHolder.length + 1);
-						document.getElementById("answer").innerHTML = placeHolder;
-					}
-				}
-
-				if(correct === 0) {
-					turnsLeft--;
-				}
-
-				//HANGMAN image document.getElementById(Hangman)
-
-				if(placeHolder == solved) {
-					alert("you win!")
-				}
-
-				if(turnsLeft == 0) {
-					alert("You lose!");
-					hangMan();
-				}
-			}
-			hangMan();
-				var count = 0;
-				var pos = solved.indexOf('e');
-
-				while (pos !== -1) {
-					count++;
-					pos = solved.indexOf('e', pos + 1);
-				
-					
-				}
-
-				console.log(count);
-
-			
-
-		
-				
-
-
-
-
-		
-
-			//$(document).ready(function() {
-
-				//var randomNumber = Math.floor(Math.random()*teamArray.length);
-				//var finalAnswer = teamArray[randomNumber];
-				//$("#answer").html(finalAnswer);
-
-			//});
-
-			
-	
-		
-		</script>
-	
-	</body>
+</body>
 </html>

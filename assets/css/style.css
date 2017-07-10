@@ -1,0 +1,31 @@
+* {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+}
+body {
+	background-image: url(../images/Hungarian-Football-Project-sm.jpg);
+	background-size: cover;
+}
+p {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.panel-title {
+	text-align: center;
+}
+
+.col-md-4 {
+	height: 100%;
+	
+}
+#header {
+	font-size: 100px;
+	color: #fff;
+}
+
+#answer {
+	margin-top: 200px;
+	font-size: 60px;
+	color: #fff;
+}
