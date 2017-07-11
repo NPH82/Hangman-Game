@@ -123,7 +123,7 @@
 			var solved = "";
 			var placeHolder = "";
 			var lives = 10;
-			
+			var guessedArray = [];
 
 			
 			$(document).ready(function() {
@@ -139,24 +139,20 @@
 		});
 			//Letter selection
 			
-			document.onkeyup = function () {
-				var guessed= event.key.toUpperCase();
-				turnsLeft();
-				letter();
-
-			}
+			
 				
 			//Correct letters
 			//Replace letter
-function letter(){
+function letter(isGuessed){
+				if(isGuessed) {
+					return;
+				}
 				var guessed = event.key.toUpperCase();
 				for(var i = 0; i < solved.length; i++) {
 					if(guessed == solved.substring(i, i + 1)) {
 					placeHolder = placeHolder.substring(0, i) + guessed + placeHolder.substring(i + 1, placeHolder.length + 1);
 						document.getElementById("answer").innerHTML = placeHolder;
-					
-						
-				}
+					}
 				}
 				
 			
@@ -174,19 +170,41 @@ function turnsLeft () {
 						alert("You got sacked!  Game Over!");
 					}
 				}
+			}
 			
-					
+function isAlreadyGuessed() {
+	var guessed = event.key.toUpperCase();
+	if(guessedArray.indexOf(guessed) === -1) {
+		return false;
+	}
+	return true;
+}
 				
 				
 
 			// Guessed letters
-		var guessed = event.key.toUpperCase();
+	function display (isGuessed) {
+		if(isGuessed) {
+			return;
+		}
+				var guessed = event.key.toUpperCase();
 				var guessedLetters = document.createElement("ul");
 				var letter= document.createTextNode(guessed);
 				guessedLetters.appendChild(letter);
 				document.getElementById("letters").appendChild(guessedLetters);
+				guessedArray.push(guessed)
+			}
 			
-		}
+		
+
+		document.onkeyup = function () {
+				var guessed= event.key.toUpperCase();
+				turnsLeft();
+				var isAlreadyGuessedVal = window.isAlreadyGuessed();
+				letter(isAlreadyGuessedVal);
+				display(isAlreadyGuessedVal);
+
+			}
 	
 				
 			// Turns Left
