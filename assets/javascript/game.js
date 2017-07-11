@@ -1,5 +1,91 @@
 
-var teamArray = [
+//var wrongWords = [];
+//var randomWordSplitFunc = randomWord();//issue here
+//var underScoreVar;
+//var placeHolderVar;
+//var userInputKey;
+
+//html changes May need to change this
+//var wrongWordTxt = document.getElementById('letters');
+//var rightWordTxt = document.getElementById('answer');
+//var livesTxt = document.getElementById('result');
+//var loseTxt = document.getElementById('lose');
+//var winTxt = document.getElementById('win');
+//var wrongCount = 10;
+
+			
+
+//new script below		
+//function randomNumber(){
+
+//function randomWord() {
+	//var randomWord = teamArray[randomNumber()];
+	//var randomWordSplit = randomWord.split('');
+	//return randomWordSplit;
+	//}
+			
+
+	
+
+//function checkRightWord(underScore) {
+	//for(var i = 0, x = 1; i < randomWordSplitFunc.length; i++, x++) {
+		//if(userInputKey === randomWordSplitFunc[i]) {
+			//underScore.fill(userInputKey,i,x);
+		//	placeHolder.fill(userInputKey,i,x)
+			//may need to change underneath
+			//rightWordTxt.textContent = underScoreVar;
+			//document.getElementById("answer").innerHTML = placeHolder;
+			//for(var i = 0; i < solved.length; i++) {
+				//	if(guessed == solved.substring(i, i + 1)) {
+					//placeHolder = placeHolder.substring(0, i) + guessed + placeHolder.substring(i + 1, placeHolder.length + 1);
+					//	document.getElementById("answer").innerHTML = placeHolder;
+					//	console.log(placeHolder);
+//		}
+//	}
+//}
+
+//function wrongWord() {
+	//wrongWords.push(userInputKey);
+//	wrongWordTxt.textContent = wrongWords;
+//	wrongCount--;
+//	livesTxt.textContent = wrongCount;
+//}
+////function checkWord()
+//{
+	//if (randomWordSplitFunc.indexOf(userInputKey) > -1) {
+		//checkRightWord(underScoreVar);
+		//checkRightWord(placeHolderVar);
+		//winGameOver();
+	//} else {
+		//wrongWord();
+		//loseGameOver();
+	//}
+//}
+//function loseGameOver(){
+	//if(wrongCount === 0) {
+		//loseTxt.textContent = "You got Sacked!! Hit Play Again."
+	//}
+//}	
+//function reset() {
+	//wrongCount = 10;
+	//livesTxt.textContent = wrongCount;
+	//randomWord();
+	//underScoreVar = makeUnderScore();
+
+//}
+//function winGameOver(){
+	//if (randomWordSplitFunc.join() === underScoreVar.join()) {
+	//	if (randomWordSplitFunc.join() === placeHolderVar.join()) {
+		//winTxt.textContent = "Spike that Ball!!! You Win!!"
+		//reset();
+		//start();
+	//}
+//}
+
+			
+//------My Code Under Here ---------
+			//Place Holder
+		var teamArray = [
 				"Arizona Cardinals",
 				"Los Angeles Rams",
 				"Oakland Raiders",
@@ -36,6 +122,7 @@ var teamArray = [
 
 			var solved = "";
 			var placeHolder = "";
+			var lives = 10;
 			
 
 			
@@ -44,56 +131,63 @@ var teamArray = [
 			//Word selection
 			var random = Math.floor(Math.random()*teamArray.length);
 			solved = teamArray[random].toUpperCase();
-			
-			
-			console.log(solved);
-
-			
-
 			//Place Holder
 	//for( var i = 0; i < solved.length; i++) {
 				placeHolder = solved.replace(/[a-z]/gi, '-');
-
-				
 				document.getElementById("answer").innerHTML = placeHolder;
 			
 		});
 			//Letter selection
-			var lives = 11;
+			
 			document.onkeyup = function () {
 				var guessed= event.key.toUpperCase();
+				turnsLeft();
+				letter();
+
+			}
 				
 			//Correct letters
 			//Replace letter
-
+function letter(){
+				var guessed = event.key.toUpperCase();
 				for(var i = 0; i < solved.length; i++) {
 					if(guessed == solved.substring(i, i + 1)) {
 					placeHolder = placeHolder.substring(0, i) + guessed + placeHolder.substring(i + 1, placeHolder.length + 1);
 						document.getElementById("answer").innerHTML = placeHolder;
-						console.log(placeHolder);
+					
+						
+				}
 				}
 				
-			}
+			
+		}
 
 			// Turns Left
-				
-				if(document.getElementById("answer").innerHTML === placeHolder) {
 
+function turnsLeft () {
+				if(document.getElementById("answer").innerHTML === placeHolder) {
 					lives--;
 					document.getElementById("result").innerHTML = lives;
+					
 
-					if(lives == 0) {
-						alert("Game Over!");
+					if(lives <= 0) {
+						alert("You got sacked!  Game Over!");
 					}
+				}
+			
 					
 				
 				
 
 			// Guessed letters
+		var guessed = event.key.toUpperCase();
 				var guessedLetters = document.createElement("ul");
 				var letter= document.createTextNode(guessed);
 				guessedLetters.appendChild(letter);
 				document.getElementById("letters").appendChild(guessedLetters);
+			
+		}
+	
 				
 			// Turns Left
 
@@ -102,8 +196,8 @@ var teamArray = [
 				//turnsLeft.appendChild(inCorrect);
 				//document.getElementById("result").appendChild(turnsLeft);
 			
-			}
-		};
+			
+		
 
 
 			
@@ -119,6 +213,3 @@ var teamArray = [
 				//$("#answer").html(finalAnswer);
 
 			//});
-
-			
-	

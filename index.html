@@ -7,31 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   <script src="assets/javascript/game.js">
 		</script>
   <style>
     
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    
     .row.content {height: 870px}
     
-    /* Set gray background color and 100% height */
+    
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
     }
     
-    /* Set black background color, white text and some padding */
+    
     footer {
       background-color: #555;
       color: white;
       padding: 15px;
     }
     
-    /* On small screens, set height to 'auto' for sidenav and grid */
+    
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
@@ -53,9 +52,16 @@
     <div class="col-sm-2 sidenav">
     	<div class="well">
     		<p>Guesses Remaining</p>
-    		<span id="result" placeholder="10"></span>
+    		<p id="result">10</p>
       </div>
+
+      <div class="well">
+        <p>Leters Guessed</p>
+        <p id="letters"></p>
+      </div>
+
     </div>
+    
     <div class="col-sm-8" id="top"> 
       <h1 id="header">Football Hangman</h1>
       <p>Start by guessing a letter.</p>
@@ -63,11 +69,11 @@
       <h1 id="answer"></h1>
       <a href="index.html" class="btn btn-primary" role="button">Play Again</a>
     </div>
+
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>Letters Guessed</p>
-      <div id="letters">
-      </div>
+        <p>Winstreak</p>
+        <p id ="win">0</p>
       </div>
     </div>
   </div>

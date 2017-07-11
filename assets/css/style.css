@@ -24,8 +24,25 @@ p {
 	color: #fff;
 }
 
+#top p {
+	font-size: 30px;
+	color: #fff;
+}
+
 #answer {
 	margin-top: 200px;
+	margin-bottom: 50px;
 	font-size: 60px;
-	color: #fff;
+	color: #000;
+	background-color: #ffd700;
+	padding: 1c0px;
+}
+
+.btn {
+	padding: 20px;
+	font-size: 20px;
+}
+
+.well {
+	border-color: #008000;
 }
